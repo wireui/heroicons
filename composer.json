@@ -1,0 +1,62 @@
+{
+    "name": "wireui/heroicons",
+    "description": "The Tailwind Heroicons for laravel blade by WireUI",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "livewire icons components",
+        "livewire icons",
+        "wireui",
+        "laravel components",
+        "blade components",
+        "blade heroicons"
+    ],
+    "authors": [
+        {
+            "name": "PH7-Jack",
+            "email": "pedrolivertwd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^9.16"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.5",
+        "pestphp/pest": "^1.21"
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest",
+        "phpcs": "./vendor/bin/php-cs-fixer fix",
+        "sync-icons": "./sync-icons.sh"
+    },
+    "autoload": {
+        "psr-4": {
+            "WireUi\\Heroicons\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "vendor/orchestra/testbench-core/laravel/app",
+            "Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WireUi\\Heroicons\\HeroiconsServiceProvider"
+            ]
+        },
+        "aliases": []
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

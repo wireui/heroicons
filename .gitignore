@@ -1,0 +1,8 @@
+.tmp
+.tmp-svg
+.idea
+.vscode
+.php-cs-fixer.cache
+.phpunit.result.cache
+vendor
+yarn-error.log

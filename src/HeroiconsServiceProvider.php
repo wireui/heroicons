@@ -2,8 +2,10 @@
 
 namespace WireUi\Heroicons;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
+use WireUi\Heroicons\Blade\Compilers\HeroiconsTagCompiler;
 
 class HeroiconsServiceProvider extends ServiceProvider
 {
@@ -11,6 +13,14 @@ class HeroiconsServiceProvider extends ServiceProvider
     {
         $this->registerConfig();
         $this->registerBladeComponents();
+        $this->registerTagCompiler();
+    }
+
+    protected function registerTagCompiler()
+    {
+        Blade::precompiler(static function (string $string): string {
+            return app(HeroiconsTagCompiler::class)->compile($string);
+        });
     }
 
     protected function registerConfig(): void
@@ -33,6 +43,7 @@ class HeroiconsServiceProvider extends ServiceProvider
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
             $blade->component(Icon::class, config('wireui.heroicons.alias'));
+            $blade->component(Icon::class, 'icons.heroicons');
         });
     }
 }

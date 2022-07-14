@@ -27,17 +27,17 @@ it('should add the publish groups', function () {
 
     expect($publishGroups)->toHaveKeys([
         'wireui.heroicons.config',
-        'wireui.heroicons.resources',
+        'wireui.heroicons.views',
     ]);
 
     expect($publishGroups['wireui.heroicons.config'])->toBeArray()->toHaveCount(1);
-    expect($publishGroups['wireui.heroicons.resources'])->toBeArray()->toHaveCount(1);
+    expect($publishGroups['wireui.heroicons.views'])->toBeArray()->toHaveCount(1);
 
     expect(array_key_first($publishGroups['wireui.heroicons.config']))->toBeFile();
-    expect(array_key_first($publishGroups['wireui.heroicons.resources']))->toBeDirectory();
+    expect(array_key_first($publishGroups['wireui.heroicons.views']))->toBeDirectory();
 
     expect(array_values($publishGroups['wireui.heroicons.config'])[0])->toEndWith('config/wireui/heroicons.php');
-    expect(array_values($publishGroups['wireui.heroicons.resources'])[0])->toEndWith('resources/views/vendor/wireui/heroicons');
+    expect(array_values($publishGroups['wireui.heroicons.views'])[0])->toEndWith('resources/views/vendor/wireui/heroicons');
 });
 
 it('should register the blade components', function () {

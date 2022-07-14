@@ -25,7 +25,7 @@ class HeroiconsServiceProvider extends ServiceProvider
         );
         $this->publishes(
             ["{$rootDir}/views" => resource_path('views/vendor/wireui/heroicons')],
-            'wireui.heroicons.resources'
+            'wireui.heroicons.views'
         );
     }
 

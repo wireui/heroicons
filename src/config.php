@@ -3,16 +3,16 @@
 return [
     /*
         |--------------------------------------------------------------------------
-        | Icons Style
+        | Icons Variant
         |--------------------------------------------------------------------------
         |
-        | The icon style can be 'solid' or 'outline'
+        | The icon variant can be 'solid' or 'outline'
         | <x-icon solid />
         | <x-icon outline />
         | <x-icon variant="outline" />
         |
     */
-    'style' => env('WIREUI_HEROICONS_STYLE', 'outline'),
+    'variant' => env('WIREUI_HEROICONS_VARIANT', 'outline'),
 
     /*
         |--------------------------------------------------------------------------

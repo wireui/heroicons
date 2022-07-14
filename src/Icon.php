@@ -2,6 +2,7 @@
 
 namespace WireUi\Heroicons;
 
+use Illuminate\Contracts\View\{Factory, View};
 use Illuminate\View\Component;
 
 class Icon extends Component
@@ -12,15 +13,15 @@ class Icon extends Component
         public bool $solid = false,
         public bool $outline = false,
     ) {
-        $this->variant = $this->getVariantStyle();
+        $this->variant = $this->getVariant();
     }
 
-    public function render()
+    public function render(): View|Factory
     {
-        return view('wireui.heroicons::components.icon');
+        return view("wireui.heroicons::icons.{$this->variant}.{$this->name}");
     }
 
-    private function getVariantStyle(): string
+    private function getVariant(): string
     {
         if ($this->variant) {
             return $this->variant;
@@ -34,6 +35,6 @@ class Icon extends Component
             return 'outline';
         }
 
-        return config('wireui.heroicons.style');
+        return config('wireui.heroicons.variant');
     }
 }

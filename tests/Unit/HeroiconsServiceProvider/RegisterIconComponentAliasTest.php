@@ -4,6 +4,7 @@ namespace Tests\Unit\HeroiconsServiceProvider;
 
 use Illuminate\View\Compilers\BladeCompiler;
 use Tests\UnitTestCase;
+use WireUi\Heroicons\Icon;
 
 class RegisterIconComponentAliasTest extends UnitTestCase
 {
@@ -20,6 +21,6 @@ class RegisterIconComponentAliasTest extends UnitTestCase
         $aliases = $bladeCompiler->getClassComponentAliases();
 
         $this->assertArrayHasKey('custom-icon', $aliases, 'The custom alias should be registered');
-        $this->assertSame($aliases['custom-icon'], 'WireUi\Heroicons\Icon');
+        $this->assertSame($aliases['custom-icon'], Icon::class);
     }
 }

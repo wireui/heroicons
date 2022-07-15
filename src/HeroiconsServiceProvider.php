@@ -31,9 +31,14 @@ class HeroiconsServiceProvider extends ServiceProvider
 
     protected function registerBladeComponents(): void
     {
+        if (!config('wireui.heroicons.alias')) {
+            return;
+        }
+
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
-            $blade->component(Icon::class, config('wireui.heroicons.alias'));
-            $blade->component(Icon::class, 'icons.heroicons');
+            /** @var string $alias */
+            $alias = config('wireui.heroicons.alias');
+            $blade->component(Icon::class, $alias);
         });
     }
 }

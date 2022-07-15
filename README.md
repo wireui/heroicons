@@ -1,6 +1,8 @@
 # WireUi Heroicons
 #### _The Tailwind Heroicons for laravel blade by WireUI_
+### This package doesn't have any WireUI dependency
 WireUI Heroicons is a library of icons components to empower your Laravel and Livewire application development.
+
 Stop creating all icons components from scratch. Get all WireUI Heroicons for free.
 
 ### 🔥 Heroicons
@@ -10,8 +12,44 @@ See all [Heroicons]
 
 ![heroicons](./src/images/heroicons.png)
 
-### 📚 Documentation
-You can access the documentation [here](https://livewire-wireui.com/docs/icons/heroicons)
+### 📚 Get Started
+#### Prerequisites:
+* [Laravel 9.x](https://laravel.com)
+* [PHP 8.1](https://www.php.net/releases/8.1/en.php)
+
+#### Install
+```bash
+composer require wireui/heroicons
+```
+
+#### How to use it?
+You can find a list of all icons and variants on the [Heroicons] website
+
+**Available variants:**
+- solid
+- outline
+
+```blade
+<x-icon name="user" />
+<x-icon name="user" solid />
+<x-icon name="user" variant="solid" />
+<x-icon class="w-5 h-5 text-teal-600" name="user" />
+```
+
+#### Configuration (Optional)
+```.env
+# Set the default icon variant. Default = outline
+WIREUI_HEROICONS_VARIANT=solid
+
+# Set the icon alias. Default = icon
+WIREUI_HEROICONS_ALIAS=icons.heroicons
+```
+
+#### Publish (Optional)
+```bash
+php artisan vendor:publish --tag="wireui.heroicons.config"
+php artisan vendor:publish --tag="wireui.heroicons.views"
+```
 
 ### 📣 Follow the author
 Stay informed about WireUI, follow [@ph7jack] on Twitter.

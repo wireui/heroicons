@@ -35,6 +35,7 @@ class Icon extends Component
             return 'outline';
         }
 
+        /** @var string */
         return config('wireui.heroicons.variant');
     }
 }

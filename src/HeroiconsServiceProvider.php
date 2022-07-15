@@ -7,7 +7,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 
 class HeroiconsServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->registerConfig();
         $this->registerBladeComponents();

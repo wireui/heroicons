@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\{Blade, View};
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\{Factory, FileViewFinder};
@@ -17,7 +17,7 @@ it('should register the views path', function () {
 
 it('should merge the wireui.heroicons config', function () {
     expect(config('wireui.heroicons'))->toHaveKeys([
-        'style',
+        'variant',
         'alias',
     ]);
 });
@@ -44,8 +44,5 @@ it('should register the blade components', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
 
-    expect($bladeCompiler->getClassComponentAliases())->toHaveKeys([
-        'icon',
-        'icons.heroicons',
-    ]);
+    expect($bladeCompiler->getClassComponentAliases())->toHaveKey('icon');
 });

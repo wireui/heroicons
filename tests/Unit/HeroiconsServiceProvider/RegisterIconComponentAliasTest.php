@@ -3,10 +3,10 @@
 namespace Tests\Unit\HeroiconsServiceProvider;
 
 use Illuminate\View\Compilers\BladeCompiler;
-use Tests\UnitTestCase;
+use Tests\TestCase;
 use WireUi\Heroicons\Icon;
 
-class RegisterIconComponentAliasTest extends UnitTestCase
+class RegisterIconComponentAliasTest extends TestCase
 {
     protected function getEnvironmentSetUp($app)
     {

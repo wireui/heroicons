@@ -3,9 +3,9 @@
 namespace Tests\Unit\HeroiconsServiceProvider;
 
 use Illuminate\View\Compilers\BladeCompiler;
-use Tests\UnitTestCase;
+use Tests\TestCase;
 
-class DontRegisterIconComponentAliasTest extends UnitTestCase
+class DontRegisterIconComponentAliasTest extends TestCase
 {
     protected function getEnvironmentSetUp($app)
     {

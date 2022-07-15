@@ -2,11 +2,11 @@
 
 namespace Tests;
 
-use Orchestra\Testbench\TestCase;
+use Orchestra\Testbench;
 use ReflectionClass;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 
-class UnitTestCase extends TestCase
+class TestCase extends Testbench\TestCase
 {
     protected function getPackageProviders($app)
     {

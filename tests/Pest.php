@@ -1,5 +1,5 @@
 <?php
 
-use Tests\UnitTestCase;
+use Tests\TestCase;
 
-uses(UnitTestCase::class)->in('Unit');
+uses(TestCase::class)->in('Unit');

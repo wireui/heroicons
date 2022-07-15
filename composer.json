@@ -24,16 +24,18 @@
         "laravel/framework": "^9.16"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.8",
+        "friendsofphp/php-cs-fixer": "^3.9",
         "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5",
-        "pestphp/pest": "^1.21"
+        "pestphp/pest": "^1.21",
+        "phpstan/phpstan": "^1.8"
     },
     "scripts": {
-        "test": "./vendor/bin/pest",
-        "phpcs": "./vendor/bin/php-cs-fixer fix",
-        "sync-icons": "./sync-icons.sh"
+        "test": "./vendor/bin/pest --coverage --min=100",
+        "phpstan": "./vendor/bin/phpstan analyse src --level max",
+        "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
+        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no"
     },
     "autoload": {
         "psr-4": {

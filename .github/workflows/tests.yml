@@ -29,7 +29,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           tools: composer:v2
-          coverage: none
+          coverage: xdebug
 
       - name: Get composer cache directory
         id: composer-cache
@@ -49,3 +49,8 @@ jobs:
 
       - name: Run PHPUnit tests
         run: composer test
+
+      - name: Check code style
+        run: |
+          composer phpcs:check
+          composer phpstan

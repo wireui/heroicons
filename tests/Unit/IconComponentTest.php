@@ -7,7 +7,7 @@ use WireUi\Heroicons\Icon;
 
 function getIcons(string $variant): Collection
 {
-    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/components/{$variant}");
+    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/icons/{$variant}");
 
     return collect($files)->map(fn (SplFileInfo $file) => [
         'icon'    => Str::before($file->getFilename(), '.blade.php'),
@@ -15,45 +15,69 @@ function getIcons(string $variant): Collection
     ]);
 }
 
-it('should get the correct icon style', function ($expected, $name, $style, $solid, $outline) {
-    $component = new Icon($name, $style, $solid, $outline);
+it('should get the default icon variant', function () {
+    $icon = new Icon(name: 'house');
 
-    $parsedStyle = $this->invokeMethod($component, 'getVariantStyle');
+    $parsedStyle = $this->invokeMethod($icon, 'getVariant');
 
-    expect($parsedStyle)->toBe($expected);
-})->with([
-    ['solid', 'home', 'solid', false, false],
-    ['solid', 'home', null, true, false],
-    ['outline', 'home', null, false, true],
-    ['outline', 'home', null, false, false],
-]);
-
-it('should render all components', function (string $icon, string $variant) {
-    $html = Blade::render('<x-icon :name="$name" :variant="$variant" />', [
-        'name'    => $icon,
-        'variant' => $variant,
-    ]);
-
-    expect($html)->toContain('<svg');
-    expect($html)->toContain('</svg>');
-})->with(function () {
-    return collect([
-        getIcons('solid'),
-        getIcons('outline'),
-    ])->collapse()->toArray();
+    expect($parsedStyle)->toBe('outline');
 });
 
-it('should render all attributes into the component', function (string $icon, string $variant) {
+it('should make the outline icon blade view', function () {
+    $icon = new Icon(name: 'home', outline: true);
+
+    $view = $icon->render();
+
+    $parsedStyle = $this->invokeMethod($icon, 'getVariant');
+
+    expect($view->name())->toEndWith('icons.outline.home');
+    expect($parsedStyle)->toBe('outline');
+});
+
+it('should make the solid icon blade view', function () {
+    $icon = new Icon(name: 'home', solid: true);
+
+    $view = $icon->render();
+
+    $parsedStyle = $this->invokeMethod($icon, 'getVariant');
+
+    expect($view->name())->toEndWith('icons.solid.home');
+    expect($parsedStyle)->toBe('solid');
+});
+
+it('should get the correct icon variant', function (string $expected, Icon $icon) {
+    $parsedStyle = $this->invokeMethod($icon, 'getVariant');
+
+    expect($parsedStyle)->toBe($expected);
+    expect($icon->variant)->toBe($expected);
+
+    $view = $icon->render();
+    expect($view->name())->toEndWith("icons.{$icon->variant}.home");
+})->with([
+    ['outline', new Icon(name: 'home', variant: 'outline')],
+    ['outline', new Icon(name: 'home', outline: true)],
+    ['solid',   new Icon(name: 'home', solid: true)],
+]);
+
+it('should render all components with attributes', function (string $icon, string $variant) {
     $html = Blade::render('<x-icon :name="$name" :variant="$variant" class="w-5 h-5" style="foo: bar" />', [
         'name'    => $icon,
         'variant' => $variant,
     ]);
 
-    expect($html)->toContain('class="w-5 h-5"');
-    expect($html)->toContain('style="foo: bar"');
-})->with(function () {
-    return collect([
-        getIcons('solid'),
-        getIcons('outline'),
-    ])->collapse()->toArray();
-});
+    $view = (new Icon(name: $icon, variant: $variant))->render();
+
+    expect($view->name())->toBe("wireui.heroicons::icons.{$variant}.{$icon}");
+
+    expect($html)
+        ->toContain('<svg')
+        ->toContain('</svg>')
+        ->toContain('class="w-5 h-5"')
+        ->toContain('style="foo: bar"');
+})->with(
+    collect()
+        ->push(getIcons('outline'))
+        ->push(getIcons('solid'))
+        ->collapse()
+        ->toArray()
+);

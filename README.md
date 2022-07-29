@@ -1,4 +1,19 @@
+<p align="center">
+    <a href="https://github.com/wireui/heroicons/">
+        <img src="https://img.shields.io/packagist/dt/wireui/heroicons" alt="Packagist Downloads" data-canonical-src="https://img.shields.io/packagist/dt/wireui/heroicons" style="max-width:100%;" />
+    </a>
+    <a href="https://github.com/wireui/heroicons/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/wireui/heroicons" alt="GitHub license" data-canonical-src="https://img.shields.io/github/license/wireui/heroicons" style="max-width:100%;" />
+    </a>
+    <a href="https://twitter.com/ph7jack">
+        <img alt="Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FPH7-Jack%2Fwireui"></a>
+    </a>
+</p>
+
 # WireUi Heroicons
+
+[![WireUi Heroicons Tests](https://github.com/wireui/heroicons/actions/workflows/tests.yml/badge.svg)](https://github.com/wireui/heroicons/actions/workflows/tests.yml)
+
 #### _The Tailwind Heroicons for laravel blade by WireUI_
 ### This package doesn't have any WireUI dependency
 WireUI Heroicons is a library of icons components to empower your Laravel and Livewire application development.

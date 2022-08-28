@@ -12,7 +12,7 @@ return [
         | <x-icon variant="outline" />
         |
     */
-    'variant' => env('WIREUI_HEROICONS_VARIANT', 'outline'),
+    'variant' => 'outline',
 
     /*
         |--------------------------------------------------------------------------
@@ -24,5 +24,5 @@ return [
         | <x-icon ... />
         |
     */
-    'alias' => env('WIREUI_HEROICONS_ALIAS', 'icon'),
+    'alias' => 'icon',
 ];

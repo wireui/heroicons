@@ -35,7 +35,8 @@
         "test": "./vendor/bin/pest --coverage --min=100",
         "phpstan": "./vendor/bin/phpstan analyse src --level max",
         "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
-        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no"
+        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
+        "generate-icons": "./generate-icons.sh"
     },
     "autoload": {
         "psr-4": {

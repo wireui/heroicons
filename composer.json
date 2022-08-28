@@ -29,14 +29,19 @@
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5",
         "pestphp/pest": "^1.21",
-        "phpstan/phpstan": "^1.8"
+        "nunomaduro/larastan": "^2.0"
     },
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",
-        "phpstan": "./vendor/bin/phpstan analyse src --level max",
+        "phpstan": "./vendor/bin/phpstan analyse",
         "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
         "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
-        "generate-icons": "./generate-icons.sh"
+        "generate-icons": "./generate-icons.sh",
+        "verify": [
+            "@phpstan",
+            "@phpcs:check",
+            "@test"
+        ]
     },
     "autoload": {
         "psr-4": {

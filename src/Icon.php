@@ -12,8 +12,13 @@ class Icon extends Component
         public ?string $variant = null,
         public bool $solid = false,
         public bool $outline = false,
+        public bool $mini = false,
     ) {
         $this->variant = $this->getVariant();
+
+        if ($mini) {
+            $this->variant = "mini.{$this->variant}";
+        }
     }
 
     public function render(): View|Factory
@@ -21,20 +26,18 @@ class Icon extends Component
         return view("wireui.heroicons::icons.{$this->variant}.{$this->name}");
     }
 
-    private function getVariant(): string
+    private function getVariant(): ?string
     {
-        if ($this->variant) {
-            return $this->variant;
-        }
+        return match (true) {
+            (bool) $this->variant => $this->variant,
+            $this->solid          => 'solid',
+            $this->outline        => 'outline',
+            default               => $this->defaultVariant()
+        };
+    }
 
-        if ($this->solid) {
-            return 'solid';
-        }
-
-        if ($this->outline) {
-            return 'outline';
-        }
-
+    protected function defaultVariant(): string
+    {
         /** @var string */
         return config('wireui.heroicons.variant');
     }

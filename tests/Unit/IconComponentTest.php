@@ -10,7 +10,7 @@ function getIcons(string $variant): Collection
     $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/icons/{$variant}");
 
     return collect($files)->map(fn (SplFileInfo $file) => [
-        'icon'    => Str::before($file->getFilename(), '.blade.php'),
+        'icon' => Str::before($file->getFilename(), '.blade.php'),
         'variant' => $variant,
     ]);
 }
@@ -57,6 +57,7 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],
     ['solid',   new Icon(name: 'home', solid: true)],
+    ['mini.solid', new Icon(name: 'home', solid: true, mini: true)],
 ]);
 
 it('should render all components with attributes', function (string $icon, string $variant) {
@@ -67,7 +68,9 @@ it('should render all components with attributes', function (string $icon, strin
 
     $view = (new Icon(name: $icon, variant: $variant))->render();
 
-    expect($view->name())->toBe("wireui.heroicons::icons.{$variant}.{$icon}");
+    $expected = Str::replace('/', '.', "wireui.heroicons::icons.{$variant}.{$icon}");
+
+    expect($view->name())->toBe($expected);
 
     expect($html)
         ->toContain('<svg')
@@ -78,6 +81,15 @@ it('should render all components with attributes', function (string $icon, strin
     collect()
         ->push(getIcons('outline'))
         ->push(getIcons('solid'))
+        ->push(getIcons('mini/solid'))
         ->collapse()
         ->toArray()
 );
+
+it('should inject the mini variant when it is given', function () {
+    $icon = new Icon(name: 'home', solid: true, mini: true);
+
+    $variant = $this->invokeMethod($icon, 'getVariant');
+
+    expect($variant)->toEndWith('mini.solid');
+});

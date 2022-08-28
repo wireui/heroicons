@@ -6,12 +6,14 @@
 # make a clean state
 rm -rf .tmp
 rm -rf src/views/icons/{solid,outline}
+rm -rf src/views/icons/mini/solid
 mkdir -p src/views/icons/{solid,outline}
+mkdir -p src/views/icons/mini/solid
 
 # prepare icons
 git clone git@github.com:tailwindlabs/heroicons.git .tmp
 
-for FILE in .tmp/src/{outline,solid}/*.svg; do
+for FILE in .tmp/src/{20,24}/{outline,solid}/*.svg; do
     echo "$(xmllint --noblanks $FILE)" >| "$FILE"
     echo "$(tail -n +2 $FILE)" >| "$FILE"
     NEW_FILE="${FILE%.svg}.blade.php"
@@ -19,15 +21,21 @@ for FILE in .tmp/src/{outline,solid}/*.svg; do
     echo $NEW_FILE
 done
 
-for FILE in .tmp/src/outline/*.php; do
+for FILE in .tmp/src/24/outline/*.php; do
     sed -i 's/ stroke="[^"]*"//g' $FILE
     sed -i 's/<svg/<svg {{ $attributes }} stroke="currentColor"/g' $FILE
 done
 
-for FILE in .tmp/src/solid/*.php; do
+for FILE in .tmp/src/24/solid/*.php; do
     sed -i 's/ fill="[^"]*"//g' $FILE
     sed -i 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
 done
 
-mv .tmp/src/{outline,solid} src/views/icons
+for FILE in .tmp/src/20/solid/*.php; do
+    sed -i 's/ fill="[^"]*"//g' $FILE
+    sed -i 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
+done
+
+mv .tmp/src/24/{outline,solid} src/views/icons
+mv .tmp/src/20/solid src/views/icons/mini
 rm -rf .tmp

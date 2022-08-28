@@ -41,23 +41,16 @@ composer require wireui/heroicons
 You can find a list of all icons and variants on the [Heroicons] website
 
 **Available variants:**
+- mini.solid
 - solid
 - outline
 
 ```blade
 <x-icon name="user" />
 <x-icon name="user" solid />
+<x-icon name="user" solid mini />
 <x-icon name="user" variant="solid" />
 <x-icon class="w-5 h-5 text-teal-600" name="user" />
-```
-
-#### Configuration (Optional)
-```.env
-# Set the default icon variant. Default = outline
-WIREUI_HEROICONS_VARIANT=solid
-
-# Set the icon alias. Default = icon
-WIREUI_HEROICONS_ALIAS=icons.heroicons
 ```
 
 #### Publish (Optional)

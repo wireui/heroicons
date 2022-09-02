@@ -47,10 +47,6 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           composer update --no-interaction --no-suggest
 
-      - name: Run PHPUnit tests
-        run: composer test
+      - name: Run PHPUnit tests and Check code style
+        run: composer verify
 
-      - name: Check code style
-        run: |
-          composer phpcs:check
-          composer phpstan

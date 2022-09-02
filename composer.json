@@ -24,12 +24,12 @@
         "laravel/framework": "^9.16"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.9",
+        "friendsofphp/php-cs-fixer": "^3.11.0",
         "mockery/mockery": "^1.5",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^7.7.0",
         "phpunit/phpunit": "^9.5",
-        "pestphp/pest": "^1.21",
-        "nunomaduro/larastan": "^2.0"
+        "pestphp/pest": "^1.22.1",
+        "nunomaduro/larastan": "^2.2.0"
     },
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",

@@ -10,7 +10,7 @@ function getIcons(string $variant): Collection
     $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/icons/{$variant}");
 
     return collect($files)->map(fn (SplFileInfo $file) => [
-        'icon' => Str::before($file->getFilename(), '.blade.php'),
+        'icon'    => Str::before($file->getFilename(), '.blade.php'),
         'variant' => $variant,
     ]);
 }

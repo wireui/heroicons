@@ -23,7 +23,7 @@ class Icon extends Component
 
     public function render(): View|Factory
     {
-        return view("wireui.heroicons::icons.{$this->variant}.{$this->name}");
+        return view("heroicons::components.{$this->variant}.{$this->name}");
     }
 
     private function getVariant(): ?string

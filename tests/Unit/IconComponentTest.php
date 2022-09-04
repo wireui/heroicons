@@ -7,7 +7,7 @@ use WireUi\Heroicons\Icon;
 
 function getIcons(string $variant): Collection
 {
-    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/icons/{$variant}");
+    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/components/{$variant}");
 
     return collect($files)->map(fn (SplFileInfo $file) => [
         'icon'    => Str::before($file->getFilename(), '.blade.php'),
@@ -30,7 +30,7 @@ it('should make the outline icon blade view', function () {
 
     $parsedStyle = $this->invokeMethod($icon, 'getVariant');
 
-    expect($view->name())->toEndWith('icons.outline.home');
+    expect($view->name())->toEndWith('components.outline.home');
     expect($parsedStyle)->toBe('outline');
 });
 
@@ -41,7 +41,7 @@ it('should make the solid icon blade view', function () {
 
     $parsedStyle = $this->invokeMethod($icon, 'getVariant');
 
-    expect($view->name())->toEndWith('icons.solid.home');
+    expect($view->name())->toEndWith('components.solid.home');
     expect($parsedStyle)->toBe('solid');
 });
 
@@ -52,7 +52,7 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
     expect($icon->variant)->toBe($expected);
 
     $view = $icon->render();
-    expect($view->name())->toEndWith("icons.{$icon->variant}.home");
+    expect($view->name())->toEndWith("components.{$icon->variant}.home");
 })->with([
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],
@@ -61,14 +61,16 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
 ]);
 
 it('should render all components with attributes', function (string $icon, string $variant) {
-    $html = Blade::render('<x-icon :name="$name" :variant="$variant" class="w-5 h-5" style="foo: bar" />', [
-        'name'    => $icon,
-        'variant' => $variant,
-    ]);
+    $variant = str_replace('/', '.', $variant);
+
+    $html = Blade::render(<<<BLADE
+        <x-icon name="{$icon}" variant="{$variant}" class="w-5 h-5" style="foo: bar" />
+        <x-heroicons::{$variant}.{$icon} class="w-10 h-10" />
+    BLADE);
 
     $view = (new Icon(name: $icon, variant: $variant))->render();
 
-    $expected = Str::replace('/', '.', "wireui.heroicons::icons.{$variant}.{$icon}");
+    $expected = Str::replace('/', '.', "heroicons::components.{$variant}.{$icon}");
 
     expect($view->name())->toBe($expected);
 
@@ -76,7 +78,10 @@ it('should render all components with attributes', function (string $icon, strin
         ->toContain('<svg')
         ->toContain('</svg>')
         ->toContain('class="w-5 h-5"')
-        ->toContain('style="foo: bar"');
+        ->toContain('style="foo: bar"')
+        ->toContain('class="w-10 h-10"')
+        ->not->toContain('<x-heroicons')
+        ->not->toContain('<x-icon');
 })->with(
     collect()
         ->push(getIcons('outline'))

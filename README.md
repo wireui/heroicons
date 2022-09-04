@@ -51,6 +51,10 @@ You can find a list of all icons and variants on the [Heroicons] website
 <x-icon name="user" solid mini />
 <x-icon name="user" variant="solid" />
 <x-icon class="w-5 h-5 text-teal-600" name="user" />
+
+<x-heroicons::outline.user />
+<x-heroicons::solid.user />
+<x-heroicons::mini.solid class="w-5 h-5" />
 ```
 
 #### Publish (Optional)

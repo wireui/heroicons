@@ -11,8 +11,8 @@ it('should register the views path', function () {
 
     /** @var FileViewFinder $finder */
     $finder = $view->getFinder();
-    expect($finder->getHints())->toHaveKey('wireui.heroicons');
-    expect($finder->getHints()['wireui.heroicons'][0])->toContain('src/views');
+    expect($finder->getHints())->toHaveKey('heroicons');
+    expect($finder->getHints()['heroicons'][0])->toContain('src/views');
 });
 
 it('should merge the wireui.heroicons config', function () {

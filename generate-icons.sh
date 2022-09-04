@@ -5,10 +5,9 @@
 
 # make a clean state
 rm -rf .tmp
-rm -rf src/views/icons/{solid,outline}
-rm -rf src/views/icons/mini/solid
-mkdir -p src/views/icons/{solid,outline}
-mkdir -p src/views/icons/mini/solid
+rm -rf src/views/components
+mkdir -p src/views/components/{solid,outline}
+mkdir -p src/views/components/mini/solid
 
 # prepare icons
 git clone git@github.com:tailwindlabs/heroicons.git .tmp
@@ -36,6 +35,7 @@ for FILE in .tmp/src/20/solid/*.php; do
     sed -i 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
 done
 
-mv .tmp/src/24/{outline,solid} src/views/icons
-mv .tmp/src/20/solid src/views/icons/mini
+mv .tmp/LICENSE src/views/components/LICENSE
+mv .tmp/src/24/{outline,solid} src/views/components
+mv .tmp/src/20/solid src/views/components/mini
 rm -rf .tmp

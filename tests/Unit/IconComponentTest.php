@@ -52,7 +52,7 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
     expect($icon->variant)->toBe($expected);
 
     $view = $icon->render();
-    expect($view->name())->toEndWith("icons.{$icon->variant}.home");
+    expect($view->name())->toEndWith("components.{$icon->variant}.home");
 })->with([
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],

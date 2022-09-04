@@ -17,7 +17,7 @@ class HeroiconsServiceProvider extends ServiceProvider
     {
         $rootDir = __DIR__;
 
-        $this->loadViewsFrom("{$rootDir}/views", 'wireui.heroicons');
+        $this->loadViewsFrom("{$rootDir}/views", 'heroicons');
         $this->mergeConfigFrom("{$rootDir}/config.php", 'wireui.heroicons');
         $this->publishes(
             ["{$rootDir}/config.php" => config_path('wireui/heroicons.php')],

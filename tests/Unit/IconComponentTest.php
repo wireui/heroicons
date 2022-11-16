@@ -57,7 +57,8 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],
     ['solid',   new Icon(name: 'home', solid: true)],
-    ['mini.solid', new Icon(name: 'home', solid: true, mini: true)],
+    ['mini.solid', new Icon(name: 'home', variant: 'mini', mini: true)],
+    ['mini.solid', new Icon(name: 'home', mini: true)],
 ]);
 
 it('should render all components with attributes', function (string $icon, string $variant) {

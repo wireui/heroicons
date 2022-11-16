@@ -16,8 +16,8 @@ class Icon extends Component
     ) {
         $this->variant = $this->getVariant();
 
-        if ($mini) {
-            $this->variant = "mini.{$this->variant}";
+        if ($mini || $this->variant === 'mini') {
+            $this->variant = 'mini.solid';
         }
     }
 
@@ -32,6 +32,7 @@ class Icon extends Component
             (bool) $this->variant => $this->variant,
             $this->solid          => 'solid',
             $this->outline        => 'outline',
+            $this->mini           => 'mini.solid',
             default               => $this->defaultVariant()
         };
     }

@@ -16,6 +16,10 @@
         <include>
             <directory suffix=".php">src/</directory>
         </include>
+
+        <exclude>
+            <directory suffix=".blade.php">src/views</directory>
+        </exclude>
     </coverage>
     <testsuites>
         <testsuite name="Unit">

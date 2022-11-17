@@ -54,7 +54,7 @@ You can find a list of all icons and variants on the [Heroicons] website
 
 <x-heroicons::outline.user />
 <x-heroicons::solid.user />
-<x-heroicons::mini.solid class="w-5 h-5" />
+<x-heroicons::mini.solid.user class="w-5 h-5" />
 ```
 
 #### Publish (Optional)

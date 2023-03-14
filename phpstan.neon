@@ -9,8 +9,8 @@ parameters:
     level: 9
 
     ignoreErrors:
-        - '#Parameter \#1 \$view of function view expects view-string\|null, string given.#'
 
     excludePaths:
+        - src/views
 
     checkMissingIterableValueType: false

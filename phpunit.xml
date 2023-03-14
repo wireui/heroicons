@@ -11,7 +11,7 @@
     convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd">
     <coverage>
         <include>
             <directory suffix=".php">src/</directory>
@@ -21,6 +21,7 @@
             <directory suffix=".blade.php">src/views</directory>
         </exclude>
     </coverage>
+
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>

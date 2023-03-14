@@ -24,22 +24,22 @@
         "laravel/framework": "^9.16|^10.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.11.0",
         "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.7.0|^8.0.0",
-        "phpunit/phpunit": "^9.5",
-        "pestphp/pest": "^1.22.1",
-        "nunomaduro/larastan": "^2.2.0"
+        "phpunit/phpunit": "^9.6",
+        "pestphp/pest": "^1.22",
+        "nunomaduro/larastan": "^2.4",
+        "laravel/pint": "^1.6"
     },
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",
         "phpstan": "./vendor/bin/phpstan analyse",
-        "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
-        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
+        "pint:fix": "./vendor/bin/pint",
+        "pint:check": "./vendor/bin/pint --test",
         "generate-icons": "./generate-icons.sh",
         "verify": [
+            "@pint:check",
             "@phpstan",
-            "@phpcs:check",
             "@test"
         ]
     },

@@ -21,11 +21,11 @@ class HeroiconsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom("{$rootDir}/config.php", 'wireui.heroicons');
         $this->publishes(
             ["{$rootDir}/config.php" => config_path('wireui/heroicons.php')],
-            'wireui.heroicons.config'
+            'wireui.heroicons.config',
         );
         $this->publishes(
             ["{$rootDir}/views" => resource_path('views/vendor/wireui/heroicons')],
-            'wireui.heroicons.views'
+            'wireui.heroicons.views',
         );
     }
 

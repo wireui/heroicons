@@ -89,7 +89,7 @@ it('should render all components with attributes', function (string $icon, strin
         ->push(getIcons('solid'))
         ->push(getIcons('mini/solid'))
         ->collapse()
-        ->toArray()
+        ->toArray(),
 );
 
 it('should inject the mini variant when it is given', function () {

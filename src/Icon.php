@@ -33,7 +33,7 @@ class Icon extends Component
             $this->solid          => 'solid',
             $this->outline        => 'outline',
             $this->mini           => 'mini.solid',
-            default               => $this->defaultVariant()
+            default               => $this->defaultVariant(),
         };
     }
 

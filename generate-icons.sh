@@ -21,18 +21,18 @@ for FILE in .tmp/src/{20,24}/{outline,solid}/*.svg; do
 done
 
 for FILE in .tmp/src/24/outline/*.php; do
-    sed -i 's/ stroke="[^"]*"//g' $FILE
-    sed -i 's/<svg/<svg {{ $attributes }} stroke="currentColor"/g' $FILE
+    sed -i '' 's/ stroke="[^"]*"//g' $FILE
+    sed -i '' 's/<svg/<svg {{ $attributes }} stroke="currentColor"/g' $FILE
 done
 
 for FILE in .tmp/src/24/solid/*.php; do
-    sed -i 's/ fill="[^"]*"//g' $FILE
-    sed -i 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
+    sed -i '' 's/ fill="[^"]*"//g' $FILE
+    sed -i '' 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
 done
 
 for FILE in .tmp/src/20/solid/*.php; do
-    sed -i 's/ fill="[^"]*"//g' $FILE
-    sed -i 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
+    sed -i '' 's/ fill="[^"]*"//g' $FILE
+    sed -i '' 's/<svg/<svg {{ $attributes }} fill="currentColor"/g' $FILE
 done
 
 mv .tmp/LICENSE src/views/components/LICENSE

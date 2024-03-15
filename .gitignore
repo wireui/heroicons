@@ -3,6 +3,7 @@
 .vscode
 .php-cs-fixer.cache
 .phpunit.result.cache
+.phpunit.cache
 coverage
 vendor
 yarn-error.log

@@ -3,28 +3,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     bootstrap="vendor/autoload.php"
     backupGlobals="false"
-    backupStaticAttributes="false"
     colors="true"
-    verbose="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd">
-    <coverage>
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+    cacheDirectory=".phpunit.cache"
+    backupStaticProperties="false"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>./tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
         <include>
-            <directory suffix=".php">src/</directory>
+            <directory>src/</directory>
         </include>
 
         <exclude>
             <directory suffix=".blade.php">src/views</directory>
         </exclude>
-    </coverage>
-
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-    </testsuites>
+    </source>
 </phpunit>

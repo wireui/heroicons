@@ -1,24 +1,22 @@
 {
     "name": "wireui/heroicons",
-    "description": "The Tailwind Heroicons for laravel blade by WireUI",
     "type": "library",
+    "description": "The Tailwind Heroicons for laravel blade by WireUI",
     "license": "MIT",
     "keywords": [
-        "livewire icons components",
-        "livewire icons",
         "wireui",
-        "laravel components",
+        "livewire icons",
+        "blade heroicons",
         "blade components",
-        "blade heroicons"
+        "laravel components",
+        "livewire icons components"
     ],
     "authors": [
         {
-            "name": "PH7-Jack",
-            "email": "pedrolivertwd@gmail.com"
+            "name": "Pedro Oliveira",
+            "email": "pedro@wireui.dev"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^8.1|^8.2|^8.3|^8.4",
         "laravel/framework": "^9.16|^10.0|^11.0"
@@ -30,17 +28,6 @@
         "nunomaduro/larastan": "^2.4",
         "laravel/pint": "^1.6"
     },
-    "scripts": {
-        "test": "./vendor/bin/pest --coverage --min=100",
-        "phpstan": "./vendor/bin/phpstan analyse",
-        "pint:fix": "./vendor/bin/pint",
-        "pint:check": "./vendor/bin/pint --test",
-        "generate-icons": "./generate-icons.sh",
-        "verify": [
-            "@pint:check",
-            "@phpstan"
-        ]
-    },
     "autoload": {
         "psr-4": {
             "WireUi\\Heroicons\\": "src/"
@@ -51,6 +38,17 @@
             "App\\": "vendor/orchestra/testbench-core/laravel/app",
             "Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest --coverage --min=100",
+        "phpstan": "./vendor/bin/phpstan analyse",
+        "pint:fix": "./vendor/bin/pint",
+        "pint:check": "./vendor/bin/pint --test",
+        "generate-icons": "./generate-icons.sh",
+        "verify": [
+            "@pint:check",
+            "@phpstan"
+        ]
     },
     "extra": {
         "laravel": {
@@ -64,5 +62,7 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

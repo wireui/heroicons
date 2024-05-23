@@ -16,6 +16,7 @@ WireUI Heroicons is a library of icons components to empower your Laravel and Li
 Stop creating all icons components from scratch. Get all WireUI Heroicons for free.
 
 ##### 🔥 Heroicons
+
 A set of free MIT-licensed high-quality SVG icons for UI development made by [TailwindLabs](https://github.com/tailwindlabs).
 
 See all [Heroicons](https://heroicons.com).

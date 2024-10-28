@@ -26,7 +26,7 @@ class Icon extends Component
         return view("heroicons::components.{$this->variant}.{$this->name}");
     }
 
-    private function getVariant(): ?string
+    private function getVariant(): string
     {
         return match (true) {
             (bool) $this->variant => $this->variant,

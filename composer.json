@@ -14,7 +14,7 @@
     "authors": [
         {
             "name": "Pedro Oliveira",
-            "email": "pedro@wireui.dev"
+            "email": "pedrolivertwd@gmail.com"
         }
     ],
     "require": {
@@ -25,7 +25,7 @@
         "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.7|^8.0|^9.0",
         "pestphp/pest": "^2.0",
-        "nunomaduro/larastan": "^2.4",
+        "larastan/larastan": "^2.9",
         "laravel/pint": "^1.6"
     },
     "autoload": {

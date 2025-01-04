@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Facades\Blade;
 use Symfony\Component\Finder\{Finder, SplFileInfo};
 use WireUi\Heroicons\Icon;
 
@@ -56,9 +56,11 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
 })->with([
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],
-    ['solid',   new Icon(name: 'home', solid: true)],
+    ['solid', new Icon(name: 'home', solid: true)],
     ['mini.solid', new Icon(name: 'home', variant: 'mini', mini: true)],
     ['mini.solid', new Icon(name: 'home', mini: true)],
+    ['micro.solid', new Icon(name: 'home', variant: 'micro', micro: true)],
+    ['micro.solid', new Icon(name: 'home', micro: true)],
 ]);
 
 it('should render all components with attributes', function (string $icon, string $variant) {

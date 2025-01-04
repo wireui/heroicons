@@ -6,7 +6,7 @@ return [
         | Icons Variants
         |--------------------------------------------------------------------------
         |
-        | The icon variant can be 'solid' or 'outline'
+        | The icon variant can be 'solid', 'outline', 'mini.solid', 'micro.solid'
         | <x-icon solid />
         | <x-icon outline />
         | <x-icon variant="outline" />

@@ -7,7 +7,9 @@ use WireUi\Heroicons\Icon;
 
 function getIcons(string $variant): Collection
 {
-    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/components/{$variant}");
+    $iconsPath = str_replace('.', '/', $variant);
+
+    $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/components/{$iconsPath}");
 
     return collect($files)->map(fn (SplFileInfo $file) => [
         'icon'    => Str::before($file->getFilename(), '.blade.php'),
@@ -56,9 +58,11 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
 })->with([
     ['outline', new Icon(name: 'home', variant: 'outline')],
     ['outline', new Icon(name: 'home', outline: true)],
-    ['solid',   new Icon(name: 'home', solid: true)],
+    ['solid', new Icon(name: 'home', solid: true)],
     ['mini.solid', new Icon(name: 'home', variant: 'mini', mini: true)],
     ['mini.solid', new Icon(name: 'home', mini: true)],
+    ['micro.solid', new Icon(name: 'home', variant: 'micro', micro: true)],
+    ['micro.solid', new Icon(name: 'home', micro: true)],
 ]);
 
 it('should render all components with attributes', function (string $icon, string $variant) {
@@ -73,9 +77,8 @@ it('should render all components with attributes', function (string $icon, strin
 
     $expected = Str::replace('/', '.', "heroicons::components.{$variant}.{$icon}");
 
-    expect($view->name())->toBe($expected);
-
-    expect($html)
+    expect($view->name())->toBe($expected)
+        ->and($html)
         ->toContain('<svg')
         ->toContain('</svg>')
         ->toContain('class="w-5 h-5"')
@@ -83,14 +86,12 @@ it('should render all components with attributes', function (string $icon, strin
         ->toContain('class="w-10 h-10"')
         ->not->toContain('<x-heroicons')
         ->not->toContain('<x-icon');
-})->with(
-    collect()
-        ->push(getIcons('outline'))
-        ->push(getIcons('solid'))
-        ->push(getIcons('mini/solid'))
-        ->collapse()
-        ->toArray(),
-);
+})->with([
+    ...getIcons('outline'),
+    ...getIcons('solid'),
+    ...getIcons('mini.solid'),
+    ...getIcons('micro.solid'),
+]);
 
 it('should inject the mini variant when it is given', function () {
     $icon = new Icon(name: 'home', solid: true, mini: true);
@@ -98,4 +99,12 @@ it('should inject the mini variant when it is given', function () {
     $variant = $this->invokeMethod($icon, 'getVariant');
 
     expect($variant)->toEndWith('mini.solid');
+});
+
+it('should inject the micro variant when it is given', function () {
+    $icon = new Icon(name: 'home', solid: true, micro: true);
+
+    $variant = $this->invokeMethod($icon, 'getVariant');
+
+    expect($variant)->toEndWith('micro.solid');
 });

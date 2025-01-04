@@ -7,7 +7,7 @@
 rm -rf .tmp
 rm -rf src/views/components
 mkdir -p src/views/components/{solid,outline}
-mkdir -p src/views/components/mini/solid
+mkdir -p src/views/components/{mini,micro}/solid
 
 # prepare icons
 git clone git@github.com:tailwindlabs/heroicons.git .tmp

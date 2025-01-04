@@ -40,7 +40,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/pest --coverage --min=100",
+        "test": "./vendor/bin/pest --coverage --min=100 --parallel",
         "phpstan": "./vendor/bin/phpstan analyse",
         "pint:fix": "./vendor/bin/pint",
         "pint:check": "./vendor/bin/pint --test",

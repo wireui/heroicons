@@ -28,6 +28,7 @@ class Icon extends Component
 
     public function render(): View|Factory
     {
+        /** @phpstan-ignore-next-line */
         return view("heroicons::components.{$this->variant}.{$this->name}");
     }
 

@@ -11,10 +11,7 @@ function getIcons(string $variant): Collection
 
     $files = (new Finder())->files()->in(__DIR__ . "/../../src/views/components/{$iconsPath}");
 
-    return collect($files)->map(fn (SplFileInfo $file) => [
-        'icon'    => Str::before($file->getFilename(), '.blade.php'),
-        'variant' => $variant,
-    ]);
+    return collect($files)->map(fn (SplFileInfo $file) => Str::before($file->getFilename(), '.blade.php'));
 }
 
 it('should get the default icon variant', function () {
@@ -65,34 +62,6 @@ it('should get the correct icon variant', function (string $expected, Icon $icon
     ['micro.solid', new Icon(name: 'home', micro: true)],
 ]);
 
-it('should render all components with attributes', function (string $icon, string $variant) {
-    $variant = str_replace('/', '.', $variant);
-
-    $html = Blade::render(<<<BLADE
-        <x-icon name="{$icon}" variant="{$variant}" class="w-5 h-5" style="foo: bar" />
-        <x-heroicons::{$variant}.{$icon} class="w-10 h-10" />
-    BLADE);
-
-    $view = (new Icon(name: $icon, variant: $variant))->render();
-
-    $expected = Str::replace('/', '.', "heroicons::components.{$variant}.{$icon}");
-
-    expect($view->name())->toBe($expected)
-        ->and($html)
-        ->toContain('<svg')
-        ->toContain('</svg>')
-        ->toContain('class="w-5 h-5"')
-        ->toContain('style="foo: bar"')
-        ->toContain('class="w-10 h-10"')
-        ->not->toContain('<x-heroicons')
-        ->not->toContain('<x-icon');
-})->with([
-    ...getIcons('outline'),
-    ...getIcons('solid'),
-    ...getIcons('mini.solid'),
-    ...getIcons('micro.solid'),
-]);
-
 it('should inject the mini variant when it is given', function () {
     $icon = new Icon(name: 'home', solid: true, mini: true);
 
@@ -108,3 +77,30 @@ it('should inject the micro variant when it is given', function () {
 
     expect($variant)->toEndWith('micro.solid');
 });
+
+foreach (['outline', 'solid', 'mini.solid', 'micro.solid'] as $variant) {
+    foreach (getIcons($variant) as $icon) {
+        it("should render {$variant}:{$icon} component", function () use ($icon, $variant) {
+            $variant = str_replace('/', '.', $variant);
+
+            $html = Blade::render(<<<BLADE
+                <x-icon name="{$icon}" variant="{$variant}" class="w-5 h-5" style="foo: bar" />
+                <x-heroicons::{$variant}.{$icon} class="w-10 h-10" />
+            BLADE);
+
+            $view = (new Icon(name: $icon, variant: $variant))->render();
+
+            $expected = Str::replace('/', '.', "heroicons::components.{$variant}.{$icon}");
+
+            expect($view->name())->toBe($expected)
+                ->and($html)
+                ->toContain('<svg')
+                ->toContain('</svg>')
+                ->toContain('class="w-5 h-5"')
+                ->toContain('style="foo: bar"')
+                ->toContain('class="w-10 h-10"')
+                ->not->toContain('<x-heroicons')
+                ->not->toContain('<x-icon');
+        });
+    }
+}
